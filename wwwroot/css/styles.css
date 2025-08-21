@@ -6,33 +6,3 @@
 .navbar li {
   padding-left: 30px;
 }
-
-.header-row{
-  margin-top: 5%;
-}
-
-.container {
-  text-align: center;
-}
-
-#searcharea {
-  margin-left: 787px;
-  width: 300px;
-}
-
-th {
-  font-style: italic;
-}
-
-td {
-  font-weight: normal;
-}
-
-h1{
-  font-size: 2.25em;
-  line-height: 0.9;
-}
-
-#paginat{
-  margin-left: 1053px;
-}

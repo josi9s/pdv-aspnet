@@ -11,7 +11,7 @@
             <input type="text" class="form-control" placeholder="Pesquisar">
         </div>
         <div class="col-1">
-            <a asp-action="Create" class="btn btn-primary">Adicionar</a>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAdicionarProduto"">Adicionar</button>
         </div> 
     </div>
     
@@ -36,8 +36,8 @@
                         <td>22.90</td>
                         <td>60</td>
                         <td>
-                            <a asp-action="Details" asp-route-id="1" class="btn btn-primary">Ver</a>
-                            <a asp-action="Edit" asp-route-id="1" class="btn btn-warning">
+                            <a asp-action="Details" asp-route-id="1" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalVerProduto">Ver</a>
+                            <a asp-action="Edit" asp-route-id="1" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditarProduto">
                                 <i class="bi bi-pencil"></i>
                             </a>
                             <a asp-action="Delete" asp-route-id="1" class="btn btn-danger">
@@ -76,16 +76,313 @@
     </div>
 </div>
 
+<!-- Adicionar -->
+<div class="modal modal-lg fade" id="modalAdicionarProduto" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Adicionar Produto</h5>
+      </div>
+
+    <div class="product-content">
+
+        <div class="row"> 
+            <div class="col-4 ms-4">
+                <div class="image-container">
+                    <button id="upload-button" type="file" class="btn-outline-custom">
+                        <i class="bi bi-upload fs-1"></i>
+                    </button>
+                </div>
+            </div>
+        
+            <div class="col-7 infos">
+
+                <div class="row">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-11">
+                                <label for="desc">Descrição</label>
+                                <input type="text" style="width: 480px;" class="form-control" name="desc" id="desc">
+                            </div>
+                        </div>                
+                    </div>
+
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-1">
+                                <label for="id">ID</label>
+                                <input type="text" style="width: 70px;" class="form-control" name="id" id="id" value="2" disabled>
+                            </div>
+                            <div class="col-1 offset-1 ms-5">
+                                <label for="grupo">Grupo</label>
+                                <input type="text" style="width: 300px;" class="form-control" name="grupo" id="grupo">
+                            </div>
+                            <div class="col-1 offset-7">
+                                <label for="un">Unidade</label>
+                                <input type="text" style="width: 70px;" class="form-control" name="un" id="un">
+                            </div>
+                        </div>                
+                    </div>
+
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-1">
+                                <label for="estoque">Estoque</label>
+                                <input type="text" style="width: 70px;" class="form-control" name="estq" id="estq">
+                            </div>
+                            <div class="col-1 ms-5">
+                                <label for="custo">Custo (R$)</label>   
+                                <input type="text" style="width: 140px;" class="form-control" name="custo" id="custo">
+                            </div>
+                            <div class="col-1 offset-3">
+                                <label for="custo">Preço Venda (R$)</label>
+                                <input type="text" style="width: 140px;" class="form-control" name="venda" id="venda">
+                            </div>    
+                            <div class="col-1 offset-3 me-3">
+                                <label for="custo">Status</label>
+                                <input type="text" style="width: 70px;" class="form-control" name="status" id="status">
+                            </div>
+                        </div>    
+                    </div>
+
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-1">
+                                <label for="desc">NCM</label>
+                                <input type="text" style="width: 143px;" class="form-control" name="ncm" id="ncm">
+                            </div>
+                            
+                            <div class="col-6 offset-3">
+                                <label for="fab">Fornecedor</label>
+                                <input type="text" style="width: 318px;" class="form-control" name="forne" id="forne">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal-body">
+            
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Salvar</button>
+    </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Ver -->
+<div class="modal modal-lg fade" id="modalVerProduto" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Ver Produto</h5>
+      </div>
+
+    <div class="product-content">
+
+        <div class="row"> 
+            <div class="col-4 ms-4">
+                <div class="image-container">
+                    
+                    <img src="@Url.Content("~/images/arroz.png")" alt="Arroz" class="product-image">
+                </div>
+            </div>
+        
+            <div class="col-7 infos">
+
+                <div class="row">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-11">
+                                <label for="desc">Descrição</label>
+                                <input type="text" style="width: 480px;" class="form-control" name="desc" id="desc" value="Arroz Branco Tipo 1 Camil - 1kg" disabled>
+                            </div>
+                        </div>                
+                    </div>
+
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-1">
+                                <label for="id">ID</label>
+                                <input type="text" style="width: 70px;" class="form-control" name="id" id="id" value="1" disabled>
+                            </div>
+                            <div class="col-1 offset-1 ms-5">
+                                <label for="grupo">Grupo</label>
+                                <input type="text" style="width: 300px;" class="form-control" name="grupo" id="grupo" value="Alimentos" disabled>
+                            </div>
+                            <div class="col-1 offset-7">
+                                <label for="un">Unidade</label>
+                                <input type="text" style="width: 70px;" class="form-control" name="un" id="un" value="UN" disabled>
+                            </div>
+                        </div>                
+                    </div>
+
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-1">
+                                <label for="estoque">Estoque</label>
+                                <input type="text" style="width: 70px;" class="form-control" name="estq" id="estq" value="60" disabled>
+                            </div>
+                            <div class="col-1 ms-5">
+                                <label for="custo">Custo (R$)</label>
+                                <input type="text" style="width: 140px;" class="form-control" name="custo" id="custo" value="17,62" disabled>
+                            </div>
+                            <div class="col-1 offset-3">
+                                <label for="custo">Preço Venda (R$)</label>
+                                <input type="text" style="width: 140px;" class="form-control" name="venda" id="venda" value="22,90" disabled>
+                            </div>    
+                            <div class="col-1 offset-3 me-3">
+                                <label for="custo">Status</label>
+                                <input type="text" style="width: 70px;" class="form-control" name="status" id="status" value="Ativo" disabled>
+                            </div>
+                        </div>    
+                    </div>
+
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-1">
+                                <label for="desc">NCM</label>
+                                <input type="text" style="width: 143px;" class="form-control" name="ncm" id="ncm" value="10063021" disabled>
+                            </div>
+                            
+                            <div class="col-6 offset-3">
+                                <label for="fab">Fornecedor</label>
+                                <input type="text" style="width: 318px;" class="form-control" name="forne" id="forne" value="Distribuidora São Vicente Ltda." disabled>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal-body">
+            
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+    </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- EDIT -->
+<div class="modal modal-lg fade" id="modalEditarProduto" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Editar Produto</h5>
+      </div>
+
+    <div class="product-content">
+
+        <div class="row"> 
+            <div class="col-4 ms-4">
+                <div class="image-container">
+                    <button id="edit-button" type="file" class="btn-outline-edit">
+                       <i class="bi bi-pencil fs-1"></i>
+                    </button>
+                </div>
+            </div>
+        
+            <div class="col-7 infos">
+
+                <div class="row">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-11">
+                                <label for="desc">Descrição</label>
+                                <input type="text" style="width: 480px;" class="form-control" name="desc" id="desc" value="Arroz Branco Tipo 1 Camil - 1kg">
+                            </div>
+                        </div>                
+                    </div>
+
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-1">
+                                <label for="id">ID</label>
+                                <input type="text" style="width: 70px;" class="form-control" name="id" id="id" value="1" disabled>
+                            </div>
+                            <div class="col-1 offset-1 ms-5">
+                                <label for="grupo">Grupo</label>
+                                <input type="text" style="width: 300px;" class="form-control" name="grupo" id="grupo" value="Alimentos">
+                            </div>
+                            <div class="col-1 offset-7">
+                                <label for="un">Unidade</label>
+                                <input type="text" style="width: 70px;" class="form-control" name="un" id="un" value="UN">
+                            </div>
+                        </div>                
+                    </div>
+
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-1">
+                                <label for="estoque">Estoque</label>
+                                <input type="text" style="width: 70px;" class="form-control" name="estq" id="estq" value="60">
+                            </div>
+                            <div class="col-1 ms-5">
+                                <label for="custo">Custo (R$)</label>
+                                <input type="text" style="width: 140px;" class="form-control" name="custo" id="custo" value="17,62">
+                            </div>
+                            <div class="col-1 offset-3">
+                                <label for="custo">Preço Venda (R$)</label>
+                                <input type="text" style="width: 140px;" class="form-control" name="venda" id="venda" value="22,90">
+                            </div>    
+                            <div class="col-1 offset-3 me-3">
+                                <label for="custo">Status</label>
+                                <input type="text" style="width: 70px;" class="form-control" name="status" id="status" value="Ativo">
+                            </div>
+                        </div>    
+                    </div>
+
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-1">
+                                <label for="desc">NCM</label>
+                                <input type="text" style="width: 143px;" class="form-control" name="ncm" id="ncm" value="10063021">
+                            </div>
+                            
+                            <div class="col-6 offset-3">
+                                <label for="forne">Fornecedor</label>
+                                <input type="text" style="width: 318px;" class="form-control" name="forne" id="forne" value="Distribuidora São Vicente Ltda.">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal-body">
+            
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Salvar</button>
+    </div>
+
+    </div>
+  </div>
+</div>
+
 @section Styles {
     <style>
-        .navbar {
-            background-color: #102F94;
-            height: 60px;
-        }
-
-        .navbar li {
-            padding-left: 30px;
-        }
 
         .header-row {
             margin-top: 5%;
@@ -116,5 +413,111 @@
         #paginat {
             margin-left: 1032px;
         }
-    </style>
+
+        .modal-dialog{
+            min-width: 800px;
+            max-width: 800px;
+        }
+
+        .product-content {
+            margin-top: 30px;
+            width: 100%;
+            height:250px; 
+        }
+
+        .image-container {
+            border: 1px solid #DEE2E6;
+            width: 250px;
+            height: 250px;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .product-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .product-content label {
+            display: block;
+            text-align: start;
+            line-height: normal;
+            margin-top: 1px;
+            font-size: 1rem;
+            width: 200px;
+        }
+
+        .product-content input[type="text"] {
+            display: block;
+            text-align: center;
+            line-height: normal;
+            margin-bottom: 10px;
+            padding-left: 0;
+            padding-right: 0;
+            border: 1px solid #DEE2E6;
+            border-radius: 0px;
+            font-size: 1rem;
+        }
+
+        .form-control:disabled {
+          background-color: #f1f1f1;
+          opacity: 1;
+        }
+
+        #upload-button {
+            border-radius: 0;
+            width: 250px;
+            height: 250px;
+        }
+
+        .btn-outline-custom {
+            color: #DEE2E6;
+            background-color: transparent; 
+            border: 1px solid #DEE2E6; 
+            transition: all 0.3s ease; 
+        }
+
+        .btn-outline-custom:hover {
+            color: #ffffff;
+            background-color: #DEE2E6;
+            border-color: #DEE2E6;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(222, 226, 230, 0.3);
+        }
+
+        .btn-outline-custom:active{
+            color: #ffffff;
+            background-color: #ADB5BD; 
+            border-color: #ADB5BD;
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(173, 181, 189, 0.4) inset;
+        }
+
+        .btn-outline-custom:focus {
+            box-shadow: 0 0 0 0.2rem rgba(222, 226, 230, 0.5);
+            outline: none; 
+        }
+
+        .btn-outline-custom:disabled {
+            color: #6C757D; 
+            background-color: transparent; 
+            border-color: #6C757D;
+            opacity: 0.65; 
+        }
+        
+        .btn-outline-edit{
+            background-image: url('@Url.Content("~/images/arroz.png")');
+            background-size: cover;
+            width: 250px;
+            height: 250px;      
+            color: #ffffff;
+            border: #F1F1F1;
+        }
+
+        </style>
+
 }
